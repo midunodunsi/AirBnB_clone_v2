@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 """DBStorage class defenition"""
 
+from models.base_model import Base
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import os
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import (
@@ -84,3 +91,8 @@ class DBStorage:
         Session = scoped_session(session_factory)
         self.__session = Session()
 
+        def close(self):
+        """
+        Closes Session
+        """
+        self.__session.close()

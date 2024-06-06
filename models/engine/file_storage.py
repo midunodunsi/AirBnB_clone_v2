@@ -2,7 +2,13 @@
 """This module defines a class to manage file storage for hbnb clone"""
 import json
 import models
-
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
@@ -53,3 +59,9 @@ class FileStorage:
                     self.__objects[key] = models.classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
+
+        def close(self):
+        """
+        Calls reload() method for deserializing the JSON file to objects
+        """
+        self.reload()
